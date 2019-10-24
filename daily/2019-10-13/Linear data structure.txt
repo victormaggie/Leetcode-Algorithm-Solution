@@ -1,0 +1,7 @@
+Basic data structure review: stack, queue, deque and list
+Need to understand prefix, infix and postfix expression formats
+Use stacks to convert expression from infix to postfix
+Use queue for basic timing simulations
+Use linked list
+
+1. Stack : LIFO
