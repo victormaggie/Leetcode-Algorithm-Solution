@@ -15,10 +15,14 @@ class Solution:
         mag_zin = collections.Counter(magazine)
 
         for k, v in ran_som.items():
-            if mag_zin.get(k, None) == None:
+            
+            if v > mag_zin[k]:   # if not exist in magazine, it will return 0
                 return False
-            elif mag_zin.get(k) < v:
-                return False
+
+            # if mag_zin.get(k, None) == None:
+            #     return False
+            # elif mag_zin.get(k) < v:
+            #     return False
         return True
 
         #  complexity: o(1)
