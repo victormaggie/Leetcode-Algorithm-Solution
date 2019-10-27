@@ -20,3 +20,25 @@ class Solution:
             elif mag_zin.get(k) < v:
                 return False
         return True
+
+        #  complexity: o(1)
+    
+    def canConstruct_2(self, ransomNote, magazine):
+        hash_table = collections.defaultdict(str)
+
+        for letter in magazine:
+            hash_table[letter] = hash_table[letter] + 1 if letter in hash_table else 1
+        
+        for i in ransomNote:
+            if i not in hash_table:
+                return False
+            else:
+                hash_table[i] -= 1
+                if hash_table[i] < 0:
+                    return False
+        return True
+
+        # complexity o(1)
+
+    def canConstruct_3(self, ransomNote, magazine):
+        return not collections.Counter(ransomNote) - collections.Counter(magazine)
