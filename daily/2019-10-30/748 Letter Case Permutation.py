@@ -17,4 +17,4 @@ class Solution:
             self.dfs(S, n+1, res, path+S[n].lower())
             self.dfs(S, n+1, res, path+S[n].upper())
         else:
-            self.dfs(S, n, res, path+S[n])
+            self.dfs(S, n+1, res, path+S[n])
