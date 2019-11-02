@@ -34,7 +34,5 @@ class Solution:
                 t = t * 10 + string[i] - '0'
                 if t < 256: self.dfs(string, i+1, k+1, res, path+str(t))
                 if t > 256: break
-        
-
 
 

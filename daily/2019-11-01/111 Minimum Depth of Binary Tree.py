@@ -5,6 +5,8 @@
 """
  DFS solution: is not efficient, we need use the Breath first search
  DFS : 56 ms. 
+ space complexity o(n), small
+ disadvantage: cannot handle 10000000 level + 
 """
 import collections
 class Solution:
@@ -21,6 +23,13 @@ class Solution:
         else:
             return max(self.dfs(root.left, path+1), self.dfs(root.right, path+1))
 
+"""
+BFS solution: use deque the calculation is 44 ms
+BFS use queue
+space complexity o(m^n)
+advantage: have the MINIMUM quality, queue can store very large item
+disadvantage: space large
+"""
 class Solution2:
     def minDepth(self, root):
         if root == None:
@@ -33,7 +42,6 @@ class Solution2:
             if node:
                 if not node.left and not node.right:
                     return level
-                
                 else:
                     queue.append((node.left, level+1))
                     queue.append((node.right, level+1))
