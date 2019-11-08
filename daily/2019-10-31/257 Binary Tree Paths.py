@@ -4,6 +4,7 @@
 class Solution:
     def binaryTreePaths(self, root):
         res = []
+        # detect if the ans is none
         if root == None:
             return
         path = str(root.val)
@@ -32,16 +33,21 @@ class Solution_2:
         return res
     
     def dfs(self, root, ans, path):
+
+        # in dfs detect the root is none or not
         if root == None:
             return
         
+        # in path is '', we add root.val into path
         if path == '':     # beware that this is not c++ path == none is different path == ''
             path += str(root.val)
-
+        
+        # detect the leaf node
         if root.left == None and root.right == None:
             ans.append(path)
             return
         
-        else:
+        if root.left:
             self.dfs(root.left, ans, path + '->'+ str(root.left.val))
+        if root.right:
             self.dfs(root.right, ans, path + '->' + str(root.right.val))
