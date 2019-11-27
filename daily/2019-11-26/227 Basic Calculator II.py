@@ -20,5 +20,7 @@ class Solution:
 
                 num = 0
                 sign = s[i]
-        s
+
         return sum(stack)
+    
+    # o(n)
