@@ -21,3 +21,5 @@ class Solution:
     def isPalis(self, s):
         return s == s[::-1]
 
+# time complexity o(n * 2^n)
+# space complexity o(n)
