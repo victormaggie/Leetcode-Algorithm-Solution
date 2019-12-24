@@ -6,6 +6,7 @@ GROUP BY Email
 HAVING COUNT(Email) > 1;
 
 -- solution 2 using temporary table
+-- this is pretty slow
 
 SELECT Email FROM
 (
