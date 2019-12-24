@@ -3,3 +3,4 @@ class Solution:
         
         nums[:] = sorted(set(nums))
         return len(nums)
+
