@@ -1,3 +1,5 @@
+import collections
+
 class Solution:
     # brute force solution
     # o(n^3)
@@ -13,7 +15,7 @@ class Solution:
         return count
 
 
-class Solution:
+class Solution2:
     # prefix sum
     def subarraySum(self, nums, k):
         count = 0
@@ -27,7 +29,7 @@ class Solution:
 
 # o(n^2)
 
-class Solution:
+class Solution3:
     # prefixSum array
     def subarraySum(self, nums, k):
         if (nums == None or len(nums) == 0):
@@ -42,6 +44,6 @@ class Solution:
         count = 0
         for i in range(0, len(nums)):
             prefixSum += nums[i]
-            count += 
+            count += 1
 
 
