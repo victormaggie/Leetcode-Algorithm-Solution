@@ -24,3 +24,5 @@ class Solution:
             prev = prev.next            
 
         return res.next
+
+        

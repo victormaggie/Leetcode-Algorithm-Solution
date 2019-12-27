@@ -12,27 +12,22 @@ class Solution:
         move = head
         nums = []
         # initialize the heap
-        import heapq
         heapq.heapify(nums)
 
-        for list in lists:
-            # define a heapq 
-            if list != None:
-                heapq.heappush(nums, list)
+        [heapq.heappush(num, (list.val, list)) for list in lists if list]
         
         # iterate the heap 
-        while (not nums):
-            # pop the smallest Node
-            curHead = heapq.heappop(nums)
+        while nums:
+            # pop the smallest Node value tuple
+            curVal, curHead = heapq.heappop(nums)
             # pop the node
-            curNext = curHead.next
             move.next = curHead
-            curHead.next = None
-            move = curHead
-            curHead = curNext
+            move = move.next
+            curHead = curHead.next
             if curHead:
                 heapq.heappush(nums, (curHead.val, curHead))
 
         return head.next
 
+# time complexity o(nlog(k))
 

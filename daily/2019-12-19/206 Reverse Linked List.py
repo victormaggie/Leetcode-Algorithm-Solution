@@ -9,7 +9,7 @@ class Solution:
             prev = curr
             curr = curr.next
             """
-
+            # here update all the node simultaneously
             curr.next, prev, curr = prev, curr, curr.next
 
         return prev
