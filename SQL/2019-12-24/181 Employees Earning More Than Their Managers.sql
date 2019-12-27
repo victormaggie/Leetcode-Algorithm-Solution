@@ -5,5 +5,6 @@ FROM
     Employee AS b
 WHERE
     -- combine the foreign key here
-    a. ManagerId = b.Id AND a.Salary > b.Salary
+    a. ManagerId = b.Id 
+    AND a.Salary > b.Salary
 ;

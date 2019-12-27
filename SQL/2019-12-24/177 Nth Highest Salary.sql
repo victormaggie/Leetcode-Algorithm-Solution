@@ -8,7 +8,9 @@ BEGIN
         SELECT
         Salary
         FROM Employee
+        -- GROUP BY to filter out the duplicate one
         GROUP BY Salary
+        -- ORDER BY DESC  because of Nth highest
         ORDER BY Salary DESC
         LIMIT 1 OFFSET N
     );

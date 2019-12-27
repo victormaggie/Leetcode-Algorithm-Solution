@@ -2,8 +2,15 @@
 
 SELECT
     Score,
-    (SELECT count(distinct Score) FROM Scores WHERE Score >= s.Score) AS Rank
+    (
+        SELECT COUNT(DISTINCT Score)
+        FROM
+            Scores
+        WHERE
+        -- use alias
+            Score >= s.Score
+    )
 FROM Scores s 
-ORDER BY Score DESC
+ORDER BY Score DESC;
 
 -- 

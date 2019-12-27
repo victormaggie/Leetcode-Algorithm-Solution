@@ -6,6 +6,7 @@ SELECT
 
 FROM Employee
 WHERE Salary NOT IN (SELECT MAX(Salary) FROM Employee)
+-- The filter condition
 ;
 
 -- Solution 2
