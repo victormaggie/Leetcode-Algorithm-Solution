@@ -14,7 +14,7 @@ class Solution:
         # initialize the heap
         heapq.heapify(nums)
 
-        [heapq.heappush(num, (list.val, list)) for list in lists if list]
+        [heapq.heappush(nums, (list.val, list)) for list in lists if list]
         
         # iterate the heap 
         while nums:
