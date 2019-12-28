@@ -20,7 +20,6 @@ WHERE
             Employee
         GROUP BY DepartmentId
     )
-
 ;
 
 -- Here left join cannot work???
