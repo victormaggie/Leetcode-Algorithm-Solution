@@ -19,4 +19,6 @@ class Solution(object):
                 right += 1
         return ''.join(s)
 
+# time complexity o(n)
+# space complexity o(N)
 
