@@ -18,3 +18,4 @@ class Solution(object):
             return False
         return (left.val == right.val) and self.helper(left.right, right.left) and self.helper(left.left, right.right)
 
+s
