@@ -1,26 +1,25 @@
 class Solution(object):
-    def merge(self, intervals):
+    def maxSubArray(self, nums):
         """
         :type intervals: List[List[int]]
         :rtype: List[List[int]]
         """
         
-        res = []
-        start = []
-        end = []
-        
-        for i in intervals:
-            start.append(i[0])
-            end.append(i[-1])        
-        start = sorted(start)
-        end = sorted(end)
-        m = 0
-        while m < len(start):
-            temp = []
-            temp.append(start[m])
-            while m < len(start)-1 and start[m+1] <= end[m]: m += 1
-            temp.append(end[m])
-            res.append(temp)
-            m += 1
-        return res
+        # dynamic programming
+        # edge case 
+        if len(nums) == 1:
+            return nums[0]
 
+        dp = [-float('inf')]
+
+        for i in nums:
+            dp.append(max(nums[i], dp[i]+nums[i]))
+        
+        return max(dp)
+
+# time complexity o(n)
+# space complexity o(1)
+
+
+
+    
