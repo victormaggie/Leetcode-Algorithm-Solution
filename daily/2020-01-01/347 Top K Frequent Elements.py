@@ -12,8 +12,16 @@ class Solution(object):
 
         for i in nums:
             hash_map[i] += 1
+
+        # above hashmap can be solved by
+        # collections.counter(nums)    o(n)
+
         for i in hash_map:
             heapq.heappushpop(res,(hash_map[i]), i )
+
+        # above heapq can be solved by
+        # heapq.nlargest(k, count.keys(), key=count.get)
+        # sorted(iterable, key=key, reverse=True)[:n]
 
         return [i[i] for i in res]
 
@@ -26,7 +34,6 @@ class Solution(object):
         count = collections.Counter(nums).most_common(k)
         return [i[0] for i in count]
 
-
     def topKFrequent3(self, nums, k):
         # time complexity o(n)
         import collections
@@ -37,4 +44,5 @@ class Solution(object):
 
 # time complexity o(nlogk)
 # space complexity o(n)
+
 
