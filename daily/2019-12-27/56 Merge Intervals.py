@@ -1,5 +1,5 @@
 class Solution:
-    def maxSubArray(self, intervals):
+    def merge(self, intervals):
         start = []
         end = []
         res = []
