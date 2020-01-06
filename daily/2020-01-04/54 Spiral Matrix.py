@@ -1,36 +1,35 @@
 class Solution(object):
     def spiralOrder(self, matrix):
-        if not matrix and not matrix[0]: return
+        if not matrix or not matrix[0]: return
         if len(matrix) == 1: return matrix[0]
-        First_row, First_column, Last_row, Last_column = 0, 0, len(matrix)-1, len(matrix[0])-1
+        # define boundary 
+        T, L, B, R = 0, 0, len(matrix)-1, len(matrix[0])-1
         stack = []
-        i, j = 0, 0
-        while  First_row < Last_row and  First_column < Last_column:
+        direction = 0
+        while T <= B and L <= R:
+            if direction == 0:
+                for j in range(L, R+1):
+                    stack.append(matrix[T][j])
+                T += 1
+                direction = 1
             
-            while j < Last_column:
-                stack.append(matrix[i][j])
-                j += 1
-                
-            Last_column -= 1
+            elif direction == 1:
+                for i in range(T, B+1):
+                    stack.append(matrix[i][R])
+                R -= 1
+                direction = 2
             
-            while i < Last_row:
-                stack.append(matrix[i][j])
-                i += 1
+            elif direction == 2:
+                for j in range(R, L-1, -1):
+                    stack.append(matrix[B][j])
+                B -= 1
+                direction = 3
             
-            Last_row -= 1
+            elif direction == 3:
+                for i in range(B, T-1, -1):
+                    stack.append(matrix[i][L])
             
-            while j > First_column:
+                L += 1
+                direction = 0
 
-                stack.append(matrix[i][j])
-                j -= 1
-                
-            First_column -= 1
-            
-            while i > First_row:
-                stack.append(matrix[i][j])
-                i -= 1
-            First_row += 1
-            
-        if len(matrix) == len(matrix[0]):
-            stack.append(matrix[i+1][j+1])
         return stack
