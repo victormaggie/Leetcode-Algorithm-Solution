@@ -1,3 +1,4 @@
+
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
@@ -19,6 +20,6 @@ class Solution(object):
             self.dfs(root.left)
             if not root.left.left and not root.right.right:
                 self.res += root.left.val
-            
+                
         if root.right:
             self.dfs(root.right)
