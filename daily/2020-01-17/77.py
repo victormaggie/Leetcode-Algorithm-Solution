@@ -2,19 +2,18 @@ class Solution:
     def combine(self, n, k):
         res = []
         path = []
-        index = 1
-        self.dfs(n, res, path, index, k)
+        self.dfs(res, path, k, n, 1)
         return res
     
-    def dfs(self, n, res, path, index, k):
+    def dfs(self, res, path, k, index):
+        # stop condition
         if len(path) == k:
             res.append(path[:])
             return
         
         for i in range(index, n+1):
             path.append(i)
-            # the current index is i
-            self.dfs(n, res, path, i+1, k)
+            self.dfs(res, path, k, n, i+1)
             path.pop()
 
-            
+    
