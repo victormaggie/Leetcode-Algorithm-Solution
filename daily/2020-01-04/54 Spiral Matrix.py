@@ -3,6 +3,8 @@ class Solution(object):
         if not matrix or not matrix[0]: return
         if len(matrix) == 1: return matrix[0]
         # define boundary 
+
+        ## another version is the string type
         T, L, B, R = 0, 0, len(matrix)-1, len(matrix[0])-1
         stack = []
         direction = 0
@@ -33,3 +35,6 @@ class Solution(object):
                 direction = 0
 
         return stack
+
+# version 3
+
