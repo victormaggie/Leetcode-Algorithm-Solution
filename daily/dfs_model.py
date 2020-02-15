@@ -11,7 +11,6 @@ class Solution:
             9: 'wxyz'
         }
         
-
         stack = []
         for i in digits:
             stack.append(hash_table[int(i)])
