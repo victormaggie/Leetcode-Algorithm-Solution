@@ -1,10 +1,10 @@
 class Solution:
     def highFive(self, items):
+        # hash map
         d = collections.defaultdict(list)
-
+        # iterate all the number to generate heapq
         for idx, val in items:
             heapq.heappush(d[idx], val)
-
             if len(d[idx]) > 5:
                 # pop the smallest one
                 heapq.heappop(d[idx])
