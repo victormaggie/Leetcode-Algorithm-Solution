@@ -6,18 +6,34 @@ class TreeNode:
 
 class Solution:
     def hasPathSum(self, root, sum):
-        res = []
+        
         if not root:
             return False
 
-        return self.helper(root, sum, res) or self.hasPathSum(root.left, sum, res) or self.hasPathSum(root.right, sum, res)
+        return self.dfs(root, sum, root.val)
         
 
-    def helper(self, root, sum, res):
+    def dfs(self, root, sum, res):
         
+        # bubble up
         if not root:
-            return sum(root) == sum
+            return False
+        
+        # check the leaf node
+        if not root.left and not root.right and res == sum:
+            return True
+        
+        flag_left, flag_right = False, False
 
-        return self.helper(root.left, sum, res.append(root.val)) or self.helper(root.right, sum, res.append(root.val))
+        if root.left:
+            self.dfs(root, sum, res + root.left.val)
+        
+        if root.right:
+            self.dfs(root, sum, res + root.right.val )
+
+
+        return flag_left or flag_right
+
+
 
 
