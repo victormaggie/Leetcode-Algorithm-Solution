@@ -8,7 +8,7 @@ class Solution:
     def hasPathSum(self, root, sum):
         res = []
         if not root:
-            return True
+            return False
 
         return self.helper(root, sum, res) or self.hasPathSum(root.left, sum, res) or self.hasPathSum(root.right, sum, res)
         
