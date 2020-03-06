@@ -15,10 +15,6 @@ class Solution:
 
     def dfs(self, root, sum, res):
         
-        # bubble up
-        if not root:
-            return False
-        
         # check the leaf node
         if not root.left and not root.right and res == sum:
             return True
