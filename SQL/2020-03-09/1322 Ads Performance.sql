@@ -17,4 +17,3 @@ ORDER BY ctr DESC, ad_id
  AVG() function
 DESC order in the ads
 */
-
