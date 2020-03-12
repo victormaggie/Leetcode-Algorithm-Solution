@@ -1,0 +1,239 @@
+
+"user_id", "post_id", "action_date", "action", "extra"
+
+| 2       | 4       | 2019-07-04  | report | spam   |
+| 3       | 4       | 2019-07-04  | report | spam   |
+| 5       | 2       | 2019-07-04  | report | racism |
+| 5       | 5       | 2019-07-04  | report | racism |
+
+
+GROUP BY extra
+
+5			2		
+2			4		u
+
+{"headers": ["user_id", "post_id", "action_date", "action", "extra"], "values": 
+			[[5, 2, "2019-07-04", "report", "racism"], 
+			 [2, 4, "2019-07-04", "report", "spam"]]}
+			 
+			 
+			 
+| user_id | session_id | activity_date | activity_type |
++---------+------------+---------------+---------------+
+| 1       | 1          | 2019-07-20    | open_session  |
+| 1       | 1          | 2019-07-20    | scroll_down   |
+| 1       | 1          | 2019-07-20    | end_session   |
+| 2       | 4          | 2019-07-20    | open_session  |
+| 2       | 4          | 2019-07-21    | send_message  |
+| 2       | 4          | 2019-07-21    | end_session   |
+| 3       | 2          | 2019-07-21    | open_session  |
+| 3       | 2          | 2019-07-21    | send_message  |
+| 3       | 2          | 2019-07-21    | end_session   |
+
+
+LEFT JOIN
+
+["student_id", "subject_name", "student_id", "student_name"], 
+[1,            "Math",          1, "Alice"], 
+[1,            "Physics",       1, "Alice"], 
+[1,            "Programming",   1, "Alice"], 
+[1,            "Physics",       1, "Alice"], 
+[1,            "Math",          1, "Alice"], 
+[1,            "Math",          1, "Alice"], 
+[2,            "Programming",   2, "Bob"], 
+[2,            "Math",          2, "Bob"], 
+[13,           "Math",          13, "John"], 
+[13,           "Programming",   13, "John"], 
+[13,           "Physics",       13, "John"]
+
+
+
+["student_id", "subject_name", "student_id", "student_name"], 
+[1,            "Math",          1, "Alice"], 
+[1,            "Physics",       1, "Alice"], 
+[1,            "Programming",   1, "Alice"], 
+[2,            "Programming",   2, "Bob"], 
+[1,            "Physics",       1, "Alice"], 
+[1,            "Math",          1, "Alice"], 
+[13,           "Math",          13, "John"], 
+[13,           "Programming",   13, "John"], 
+[13,           "Physics",       13, "John"], 
+[2,            "Math",          2, "Bob"], 
+[1,            "Math",          1, "Alice"], 
+[null,          null,           6, "Alex"]
+
+
+/*add the new subject it will follow the format of subjects name*/
+["student_id", "student_name"], 
+
+	[1,        "Alice"], 
+	[1,        "Alice"], 
+	[1,        "Alice"], 
+	[2,        "Bob"], 
+	[2,        "Bob"], 
+	[2,        "Bob"], 
+	[13,       "John"], 
+	[13,       "John"], 
+	[13,       "John"], 
+	[6,        "Alex"], 
+	[6,        "Alex"], 
+	[6,        "Alex"]
+	
+	
+["student_id", "student_name"], 
+	[1, 		"Alice"], 
+	[2, 		"Bob"], 
+	[13, 		"John"], 
+	[6, 		"Alex"]
+
+
+
+["student_id", "attended_exams"], 
+	[1, 3]
+	[1, 2], 
+	[1, 1], 
+	[2, 1], 
+	[2, 1], 
+	[13, 1], 
+	[13, 1], 
+	[13, 1]]
+
+["student_id", "subject_name"], 
+	[1, "Math"], -- > 3
+	[1, "Physics"],  --> 2
+	[1, "Programming"],  --> 1
+	[2, "Math"],   --> 1
+	[2, "Programming"],  --> 1
+	[13, "Math"],  --> 1
+	[13, "Physics"],  --> 1
+	[13, "Programming"] -->1
+	
+	
+["seller_id", "product_id", "buyer_id", "sale_date", "quantity", "price", "product_id", "product_name", "unit_price"], 
+ [1, 			1, 			1, 				"2019-01-21", 	2,   2000, 		1, 				"S8", 			1000],
+ [2, 			1, 			3, 				"2019-06-02",	1,   800, 		1, 				"S8", 			1000],
+ [1, 			2, 			2, 				"2019-02-17",	1,   800, 		2, 				"G4", 			800],
+ [3, 			3, 			3, 				"2019-05-13", 	2,   2800, 		3, 				"iPhone", 		1400]
+
+
+
+["product_id", "product_name", "unit_price", "seller_id", "product_id", "buyer_id", "sale_date", "quantity", "price"], 
+	[1, 			"S8", 			1000, 		1, 			1,			 1, 		"2019-01-21", 	2, 			2000], 
+	[2, 			"G4", 			800, 		1, 			2, 			 2, 		"2019-02-17", 	1, 			800], 
+	[1, 			"S8", 			1000, 		2, 			1,   		 3, 		"2019-06-02", 	1, 			800]]}
+	
+	
+	["product_id", "product_name", "unit_price", "seller_id", "product_id", "buyer_id", "sale_date", "quantity", "price"], 
+	[1, "S8", 1000, 1, 1, 1, "2019-01-21", 2, 2000], 
+	[2, "G4", 800,  1, 2, 2, "2019-02-17", 1, 800], 
+	[1, "S8", 1000, 2, 1, 3, "2019-06-02", 1, 800]
+	
+	
+["product_id", "product_name", "unit_price", "seller_id", "product_id", "buyer_id", "sale_date", "quantity", "price"], 
+	[1, 		"S8", 			1000, 			1, 			1, 				1, 		"2019-01-21",	 2,      2000], 
+	[2, 		"G4", 			800, 			1, 			2, 				2, 		"2019-02-17", 	 1,      800], 
+	[1, 		"S8", 			1000, 			2, 			1, 				3, 		"2019-06-02",    1,      800], 
+	[3, 		"iPhone", 		1400, 			3, 			3, 				3, 		"2019-05-13",    2,      800]
+	
+	
+["query_name", "quality", "poor_query_percentage"], 
+	["Cat",		0.40, 		0.67]
+	["Dog", 	5.00,		0.33]
+
+
+["query_name", 	  "quality",   "poor_query_percentage"], 
+	["Cat",  		0.40, 			0.33], 
+	["Dog", 		5.00, 			0.33]
+
+
+
+["sales_id", "name", "com_id", "com_id", "name", "city"],\
+[[1, "John", 1, 1, "RED", "Boston"]]}
+
+["sales_id", "name", "com_id", "com_id", "name", "city"], 
+[[1, "John", 1, 1, "RED", "Boston"], 
+[4,  "Pam", 1, 1, "RED", "Boston"], 
+[4,  "Pam", 3, 3, "YELLOW", "Boston"], 
+[5,  "Alex", 4, 4, "GREEN", "Austin"], 
+[2,  "Amy", null, null, null, null], 
+[3,  "Mark", null, null, null, null]]}
+
+["sales_id", "name", "com_id", "com_id", "name", "city"], 
+[[1, "John", 1, 1, "RED", "Boston"], 
+[4, "Pam", 1, 1, "RED", "Boston"], 
+[4, "Pam", 3, 3, "YELLOW", "Boston"], 
+[5, "Alex", 4, 4, "GREEN", "Austin"]]}
+["order_id", "order_date", "com_id", "sales_id", "amount", "com_id", 	"name", 	"city"], 
+	[3, 		"3/1/2014",	 1, 		1, 			50000, 		1, 		"RED", 	"Boston"], 
+	[4, 		"4/1/2014",	 1,			 4, 		25000,		1,		"RED", "Boston"]
+
+
+["actor_id","director_id","timestamp"]},
+[[3,5,1],
+[4,2,0],
+[4,5,5],
+[5,3,7],
+[4,5,3],
+[4,3,8],
+[2,5,9],
+[4,2,2],
+[1,5,4],
+[5,3,6]]}}
+
+
+["product_id", "product_name"], 
+	[1, 		"S8"], 
+	[2, 		"G4"], 
+	[2, 		"G4"], 
+	[3, 		"iPhone"]
+	
+	
+	
+	
+	
+	
+ ["product_id", "product_name", "unit_price", "seller_id", "product_id", "buyer_id", "sale_date", "quantity", "price"], 
+	[1, "S8", 1000, 1, 1, 1, "2019-01-21", 2, 2000], 
+	[2, "G4", 800, 1, 2, 2, "2019-02-17", 1, 800], 
+	[2, "G4", 800, 2, 2, 3, "2019-06-02", 1, 800], 
+	[3, "iPhone", 1400, 3, 3, 4, "2019-05-13", 2, 2800]
+	
+	
+	
+	
+["product_id", "product_name", "unit_price", "seller_id", "product_id", "buyer_id", "sale_date", "quantity", "price"], 
+
+	[1, "S8", 1000, 1, 1, 1, "2019-01-21", 2, 2000], 
+	[2, "G4", 800, 1, 2, 2, "2019-02-17", 1, 800], 
+	[3, "iPhone", 1400, 3, 3, 4, "2019-05-13", 2, 2800]]}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

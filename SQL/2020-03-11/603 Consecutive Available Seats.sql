@@ -1,3 +1,5 @@
+/*important for the solution*/
+
 SELECT DISTINCT a.seat_id
 FROM cinema a
 JOIN cinema b
