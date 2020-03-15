@@ -27,8 +27,20 @@ class Solution:
         if root.right:
             self.dfs(root, sum, res + root.right.val )
 
-
         return flag_left or flag_right
+
+
+class Solution2:
+    def hasPathSum(self, root, sum):
+        if not root: 
+            return False
+        
+        if not root.left and not root.right:
+            return sum == root.val
+        
+        return self.hasPathSum(root.left, sum-root.val) or self.hasPathSum(root.right, sum-root.val)
+
+        
 
 
 
