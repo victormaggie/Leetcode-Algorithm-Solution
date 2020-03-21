@@ -16,15 +16,12 @@ def flatten(L):
 
 # cannot iterate flatten [1, 2, [2, 2, [3, 3]]]
 
-
 def flatten(L):
     import functools
     X = functools.reduce(lambda x, y: x + y, L)
     return X
 
 # cannot solve this problem [1, 2, [2, 2, [3, 3]]]
-
-
 
 class Solution:
 
@@ -74,3 +71,40 @@ class Solution:
                 left = mid + 1
         
         return False
+
+# time complexity o(logn) + o(logm)
+# space complexity o(1)
+
+class Solution:
+    def searchMatrix(self, matrix, target):
+        # edge case
+        if not matrix or not matrix[0]:
+            return False
+        if matrix[-1][-1] < target:
+            return False
+        if matrix[-1][-1] == target:
+            return True
+        
+        m, n = len(matrix), len(matrix[0])
+
+        # binary search part for this algorithm
+        left, right = 0, m * n -1
+        while left <= right:
+            mid = left + (right - left)//2
+            row = mid // n
+            col = mid % n
+            if matrix[row][col] > target:
+                right = mid - 1
+            
+            elif matrix[row][col] < target:
+                left = mid + 1
+            
+            else:
+                return True
+        return False
+
+# time complexity o(logmn)
+# space complexity o(1)
+
+# we can decrease o(lognm) to o(logn) + o(logm)
+
