@@ -29,7 +29,7 @@ GROUP BY T.Request_at
 
 SELECT 
     T.Request_at,
-    ROUND((COUNT(IF(T.Status != 'completed', TRUE, NULL) / COUNT(*))), 2) AS 'Cancellation Rate'
+    ROUND((COUNT(IF(T.Status != 'completed', TRUE, NULL)) / COUNT(*)), 2) AS 'Cancellation Rate'
 
 FROM 
     Trips T
@@ -60,3 +60,18 @@ WHERE
 
 GROUP BY T.Request_at
 
+
+SELECT 
+    T.Request_at AS Day,
+    ROUND((COUNT(IF(T.Status != 'completed', TRUE, NULL)) / COUNT(*)), 2) AS 'Cancellation Rate'
+
+FROM 
+    Trips T
+WHERE 
+    T.Client_Id in (SELECT  Users_Id FROM Users WHERE Banned = 'No')
+    
+    AND T.Driver_Id in (SELECT Users_Id FROM Users WHERE Banned = 'No')
+
+    AND T.Request_at between '2013-10-01' AND '2013-10-03'
+
+GROUP BY T.Request_at;
