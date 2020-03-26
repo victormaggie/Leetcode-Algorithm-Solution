@@ -44,8 +44,27 @@ class Solution:
 
 class Solution:
     def findPeakElement(self, nums):
+        # climbing algorithms
         for i in range(len(nums)-1):
             if nums[i] > nums[i+1]:
                 return i
         return len(nums)-1
     
+    # o(n)
+    # o(1)
+
+class Solution:
+    def findPeakElement(self, nums):
+        left = 0
+        right = len(nums) -  1
+
+        # here cannot == , not search
+        while left < right:
+            mid = (left + right) //2 
+            # going downwards
+            if nums[mid] > nums[mid+1]:
+                right = mid
+            # going upwards
+            else:
+                left = mid + 1
+        return left
