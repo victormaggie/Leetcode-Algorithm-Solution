@@ -2,8 +2,7 @@
 
 class Solution:
     def findPeakElement(self, nums):
-        if not nums:
-            return
+
         if len(nums) == 1:
             return 0
         if len(nums) == 2:
@@ -68,3 +67,26 @@ class Solution:
             else:
                 left = mid + 1
         return left
+
+# o(log2n)
+# o(1)
+
+# Divide and Conquer solution for the algorithms
+
+class Solution:
+    def findPeakElement(self, nums):
+        left = 0
+        right = len(nums) -1
+        self.binary_search(nums, left, right)
+
+    def binary_search(self, nums, left, right):
+
+        if (left == right):
+            return left
+        
+        mid = (left + right) // 2
+        if (nums[mid] > nums[mid+1]):
+            return self.binary_search(nums, left, mid)
+        
+        return self.binary_search(nums, mid+1, right)
+
