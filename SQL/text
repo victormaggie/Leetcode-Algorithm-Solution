@@ -454,12 +454,28 @@ LEFT JOIN
 
 
 
+["id", "p_id", "id", "p_id"], 
+	[1, null, 2, 1], 
+	[1, null, 3, 1], 
+	[2, 1, 	4, 	2], 
+	[2, 1, 	5, 	2], 
+	[3, 1, null, null], 
+	[4, 2, null, null], 
+	[5, 2, null, null]
 
 
+ ["id", "p_id", "id", "p_id"], 
+	 [[1, null, 2, 1], 
+	 [1, null, 3, 1], 
+	 [2, 1, 4, 2], 
+	 [2, 1, 5, 2],
+	 [3, 1, null, null], 
+	 [4, 2, null, null], 
+	 [5, 2, null, null]]}
 
-
-
-
+	["row_id", "America"], 
+	 [[1.0, "Jack"]
+	 [2.0, "Jane"]]
 
 
 

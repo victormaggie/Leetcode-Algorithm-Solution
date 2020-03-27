@@ -40,7 +40,9 @@ FROM
         q.person_name,
         @cum_weight:= @cum_weight + q.weight cum_weight
         FROM
-        Queue q JOIN (SELECT @cum_weight:= 0) t1
+        Queue q 
+        JOIN 
+            (SELECT @cum_weight:= 0) t1
     ORDER BY
         q.turn) t2
 WHERE
@@ -54,6 +56,6 @@ LIMIT 1;
 
 1. use the two table inner join 
 2. choice from two table 
-3. use the function @cum_weight := @cum_weight + q.weight cum_weight
+3. use the function @cum_weight := @cum_weight + q.weight cum_weight --> initialization @cum_weight := 0
 
 */
