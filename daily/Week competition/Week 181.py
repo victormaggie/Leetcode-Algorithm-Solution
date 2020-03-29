@@ -41,3 +41,39 @@ class Solution:
                 res += curSum
         return res
 
+
+# Check if there is a valid path
+
+class Solution:
+    def hasValidPath(self, grid):
+        if not grid or not grid[0]:
+            return 
+
+        
+
+    def valid_next(self, i,j):
+
+        # up- down - right - left
+
+        self.valid = {
+            "r" : [1, 3, 5],
+            "l"  : [1, 4, 6],
+            "d" : [2, 5, 6]
+
+        }
+
+        self.street_dir ={
+            1 : ['l', 'r'],
+            2 : ['u', 'd'],
+            3 : ['l', 'd'],
+            4 : ['r', 'd'],
+            5 : ['l', 'u'],
+            6 : ['u', 'r']
+        } 
+
+        self.dirs = {
+            'r' : [0, 1],
+            'l' : [0, -1],
+            'u' : [-1, 0],
+            'd' : [1, 0]
+        }
