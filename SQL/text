@@ -446,29 +446,23 @@ LEFT JOIN
 	  [4, "2018-05-21", "HP", null, null, null, null, null]]}
 	 
 	 
-	 
- ["stock_name", "buy", "stock_name", "sell"], 
- [["Corona Masks", 2010, "Corona Masks", 11510], 
- ["Handbags", 30000, "Handbags", 7000], 
- ["Leetcode", 1000, "Leetcode", 9000]]}
-	 
-	 
-	 
- ["x", "y", "x", "y"], 
-  [-1, -1, -1, -1], 
-  [0,   0, -1, -1], 
-  [-1, -2, -1, -1], 
-  [-1,   -1, 0, 0], 
-  [0,     0, 0, 0], 
-  [-1,   -2, 0, 0], 
-  [-1, -1, -1, -2], 
-  [0,   0, -1, -2], 
-  [-1, -2, -1, -2]
+
+ ["month", "country", "approved_count", "approved_amount", "chargeback_count", "chargeback_amount"], 
+	[["2019-05", "US", 0, 0, 1, 2000], 
+	["2019-06", "US", 1, 1000, 1, 1000], 
+	["2019-09", "US", 1, 5000, 1, 5000]]}
 
 
-["login_date", "user_count"], 
- [["2019-05-01", 1], 
- ["2019-06-21", 1], 
- ["2019-01-01", 1], 
- ["2019-06-21", 1], 
- ["2019-03-01", 1]]
+ ["month", "country", "approved_count", "approved_amount", "chargeback_count", "chargeback_amount"],
+  [["2019-05", "US", 	1, 				1000, 				1, 2000], 
+  ["2019-06", "US", 	2, 				8000, 				1, 1000], 
+  ["2019-09", "US",	 	0, 				0, 					1, 5000]]}
+
+
+["month", "country", "state", "amount"], 
+ [["2019-06", "US", "back", 1000], 
+ ["2019-05", "US", "back", 2000], 
+ ["2019-09", "US", "back", 5000], 
+ ["2019-05", "US", "approved", 1000], 
+ ["2019-06", "US", "approved", 3000], 
+ ["2019-06", "US", "approved", 5000]]}
