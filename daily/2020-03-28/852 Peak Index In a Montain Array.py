@@ -10,4 +10,16 @@ class Solution(object):
                 left = mid + 1
         return left
 
-        
+
+# Time complexity o(log n)
+# space complexity o(1)
+
+# Solution 2
+
+class Solution(object):
+    def peakIndexInMontainArray(self, A):
+        return A.index(max(A))
+
+# Time complexity o(n)
+# space complexity o(1)
+

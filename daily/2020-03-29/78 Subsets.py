@@ -18,3 +18,6 @@ class Solution:
 
 # time complexity o(n * n^2)
 # space complexity o(2^n)
+
+class Solution:
+    
