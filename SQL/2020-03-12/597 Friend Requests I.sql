@@ -12,7 +12,7 @@ SELECT
 
 SELECT  
     COALESCE(
-        ROUND(COUNT(DISTINCT requester_id, accepter_id) / COUNT(DISTINCT sender_id, send_to_id),2)
+        ROUND( COUNT(DISTINCT sender_id, send_to_id / COUNT(DISTINCT requester_id, accepter_id)),2)
         ,0
     ) AS accept_rate
 
