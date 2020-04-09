@@ -2,6 +2,7 @@ SELECT
     Id,
     Company,
     Salary
+
 FROM
     (
         SELECT e.Id, 
@@ -25,3 +26,4 @@ WHERE
     ranking = FLOOR((countnum + 1)/2)
     OR
     ranking = FLOOR((countnum + 2)/2)
+
