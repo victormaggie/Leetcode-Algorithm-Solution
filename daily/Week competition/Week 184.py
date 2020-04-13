@@ -4,7 +4,7 @@ class Solution:
     def numOfWays(self, n):
         a121, a123, mod = 6, 6,  10**9 +7
         for i in range(n-1):
-            a121, a123 = a121 * 3 + a123 * 2 + a121 * 2 + a123 * 2
+            a121, a123 = a121 * 3 + a123 * 2 , a121 * 2 + a123 * 2
         return (a121 + a123) % mod
 
 # easy
@@ -58,4 +58,21 @@ class Solution:
                 text = text[:Flag] + quote + text[Flag+length:]
                 Flag = text.find(i)
                 
+        return text
+
+    # optimization
+    def entityParse(self, text):
+        if not text:
+            return 
+        hash_map = {
+            "&quot;" : (6, '"'),
+            "&apos;" : (6, "'"),
+            "&amp;" : (5, '&'),
+            "&gt;" : (4, '>'),
+            "&lt;" : (4,  '<'),
+            '&frasl;' : (7, '/')
+        }
+
+        for k, v in hash_map.items():
+            text = v.join(text.split(k))
         return text
