@@ -8,7 +8,7 @@ BEGIN
         SELECT
         Salary
         FROM Employee
-        -- GROUP BY to filter out the duplicate one
+        -- GROUP BY to filter out the duplicate one ----> be aware of the group by !!! 
         GROUP BY Salary
         -- ORDER BY DESC  because of Nth highest
         ORDER BY Salary DESC
