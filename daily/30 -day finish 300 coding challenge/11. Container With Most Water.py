@@ -31,5 +31,5 @@ class solution:
                 area = max(area, (j - i) * min(height[i], height[j]) )
         
         return area
-# time complexity o(n)
+# time complexity o(n^2)
 # space complexity o(1)
