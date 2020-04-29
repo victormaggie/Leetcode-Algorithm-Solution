@@ -22,11 +22,12 @@ class Solution:
                 square[max_len] = val_right
                 right -= 1
             max_len -= 1
-    
+
         return square
 # 273 ms
 # time complexity o(N)
 # space complexity o(N)
 
-### be aware of that !! python map function has multi-threading calculation  --> usually performance is good
+### be aware of that !! python map function has multi-threading calculation  
+### --> usually performance is good
 
