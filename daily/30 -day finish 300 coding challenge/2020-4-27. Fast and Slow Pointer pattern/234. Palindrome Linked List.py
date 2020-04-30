@@ -3,7 +3,7 @@ class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
-    
+
 class Solution:
     def isPalindrome(self, head):
         if not head or not head.next: return True
@@ -22,7 +22,7 @@ class Solution:
         self.reverse(store)
         if not head or not copyreverse:
             return True
-    
+
     # reverse a linked list
 
     def reverse(self, head):
@@ -34,7 +34,7 @@ class Solution:
             previous = current
             current = next_node
         return previous
-    
+
 # time complexity o(N)
 # space complexity o(1)
 

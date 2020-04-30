@@ -16,20 +16,22 @@ class Solution:
         peak = 0
 
         ## here find the peak value has a bug !! 
-        while left <= right:
+        while left < right:
             mid = left + (right - left)//2
-            mid_val = Mountain_arr.get(mid)
-            if mid - 1 >= 0 and mid + 1 < N and mid_val > Mountain_arr.get(mid - 1) and mid_val > Mountain_arr.get(mid + 1):
-                peak = mid
-                break
-            elif mid - 1 >= 0 and mid_val > Mountain_arr.get(mid - 1):
-                left = mid + 1
-            elif mid + 1 < N and mid_val > Mountain_arr.get(mid + 1):
-                right = mid - 1
-
-
-
-
+            if Mountain_arr.get(mid) < Mountain_arr.get(mid + 1):
+                left = peak = mid + 1
+            else:
+                right = mid
+            # only use the clibing algorithm if we use binary search
+            # there is a bug shit !!
+            # if mid - 1 >= 0 and mid + 1 < N and mid_val > Mountain_arr.get(mid - 1) and mid_val > Mountain_arr.get(mid + 1):
+            #     peak = mid
+            #     break
+            # elif mid - 1 >= 0 and mid_val > Mountain_arr.get(mid - 1):
+            #     left = mid + 1
+            # elif mid + 1 < N and mid_val > Mountain_arr.get(mid + 1):
+            #     right = mid - 1
+            
         res = min(self.search_inc(Mountain_arr, 0, peak, target), self.search_dec(Mountain_arr, peak, N, target))
 
         if res == float('inf'):
