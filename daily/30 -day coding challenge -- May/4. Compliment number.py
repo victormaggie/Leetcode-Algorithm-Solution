@@ -7,6 +7,8 @@ classs Solution:
             n = n >> 1
 
         all_bits_set = pow(2, bit_count) - 1
+        # all_bits_set = (1 << bit_count) - 1
+        # use bit manipulation to solve it
 
         return num ^ all_bits_set
 
