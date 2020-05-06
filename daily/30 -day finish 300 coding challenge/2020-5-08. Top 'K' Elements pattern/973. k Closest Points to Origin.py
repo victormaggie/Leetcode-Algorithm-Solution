@@ -23,7 +23,3 @@ class Solution:
         for i in points:
             heapq.heappush(maxheap, (i[0]**2 + i[1]**2, i))
         return heapq.nsmallest(K, maxheap)
-
-
-
-        
