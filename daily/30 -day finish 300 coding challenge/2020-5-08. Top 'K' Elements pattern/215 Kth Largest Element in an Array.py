@@ -29,7 +29,6 @@ class Solution:
 # total time complexity o(nlogk)
 # space complexity o(k)
 
-
 # lazy solution
 class Solution:
     def findKthLargest(self, nums, k):
