@@ -1,17 +1,20 @@
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         m, n = len(grid), len(grid[0])
-        self.time = 0
+        time = float('inf')
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == 2:
-                    self.bfs(grid, i, j)
-                    
+                    new_grid = copy.deepcopy(grid)
+                    new_time = self.bfs(new_grid, i, j)
+                    time = min(time, new_time)
+                    print(i, j)
+
         for i in range(m):
             for j in range(n):
-                if grid[i][j] == 1:
+                if new_grid[i][j] == 1:
                     return -1
-        return self.time
+        return time
     
     def bfs(self, grid, i, j):
         m, n = len(grid), len(grid[0])
@@ -32,4 +35,6 @@ class Solution:
                         #print(a, b)
                         if (a, b) not in queue:
                             queue.append((a,b))
-        self.time = max(self.time, count)
+        return count
+
+# how to solve this problem when they rotten together !!
