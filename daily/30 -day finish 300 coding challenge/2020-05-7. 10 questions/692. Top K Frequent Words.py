@@ -61,3 +61,21 @@ class Solution:
 # time complexity o(Nlogk)
 # space complexity o(N)
 
+
+###########################################################################################################
+
+# TAKE AWAY:
+# heapify is o(N) algortim 
+# if use MaxHeap to pop the smallest value
+
+class Solution:
+    def topKFrequent(self, words, k):
+        count = collections.Counter(words)
+        heap = [(-freq, word) for word, freq in count.items()]
+        heapq.heapify(heap)
+        # here the same frequent --> how heap restore and pop >??????????????????
+        return [heapq.heappop(heap)[1] for _ in range(k)]
+
+# time complexity o(klogN)
+# space complexity o(n)
+
