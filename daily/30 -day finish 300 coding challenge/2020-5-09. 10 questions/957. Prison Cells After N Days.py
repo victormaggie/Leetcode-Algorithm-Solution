@@ -33,5 +33,8 @@ class Solution:
     
     def nextday(self, cells):
         return [int(i > 0 and i < 7 and cells[i-1] == cells[i+1]) for i in range(8)]
-        
+
+# time complexity  O(2N)
+# space complexity o(N)
+
 
