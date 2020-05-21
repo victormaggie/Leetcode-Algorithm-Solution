@@ -16,3 +16,5 @@ class Solution(object):
             heapq.heappush(heap, (i[0]**2 + i[1]**2, i))
         
         return [i[1] for i in heapq.nsmallest(K, heap)]
+    
+  
