@@ -154,7 +154,7 @@ public:
     }
     // process all sub-array for all the capacities
     for (int i = 1; i < n; i++){
-        for (int c = 0; c <= capacity; c+=){
+        for (int c = 0; c <= capacity; c++){
             int profit1 = 0, profit2 = 0;
             if (weights[i] <= c){
                 profit1 = profits[i] + dp[(i-1)%2][c-weights[i]];
