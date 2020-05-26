@@ -108,10 +108,19 @@ class Solution:
                 path.append(new_val)
             else:
                 path.append(new_val)
-                self.dfs(root.left, path)
+                self.dfs(root.right, path)
                 path.remove(new_val)
             
         if root.right:
             new_val = root.right.val
             if new_val in path:
-                path.
+                path.remove(new_val)
+                self.dfs(root.left, path)
+                path.append(new_val)
+            else:
+                path.append(new_val)
+                self.dfs(root.right, path)
+                path.remove(new_val)
+
+# time complexity o(n)
+# space complexity o(n)

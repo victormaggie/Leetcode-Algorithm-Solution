@@ -8,4 +8,4 @@ class solution:
             count[cum_sum] = count.get(cum_sum, 0) + 1
         return res
 
-
+# prefix sum
