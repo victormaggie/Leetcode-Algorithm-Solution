@@ -70,7 +70,7 @@ def canPartition(nums):
     dp = [[-1 for x in range((s>>1) + 1)] for y in range(len(nums))]
     return True if canPartition_recursive(dp, nums, s>>1, 0) == 1 else False
 
-def canPartition_topdown(nums, target, currentIndex):
+def canPartition_topdown(dp, nums, target, currentIndex):
     # base check
     if target == 0: return 1
 
@@ -80,7 +80,7 @@ def canPartition_topdown(nums, target, currentIndex):
 
     if dp[currentIndex][target] == -1:
         # we did not calculate this
-        if nums[currentIndex] < target:
+        if nums[currentIndex] <= target:
             if canPartition_recursive(dp, num, target - nums[currentIndex], currentIndex + 1) == 1:
                 dp[currentIndex][target] = 1
                 # here we have early stop --> this is much better
