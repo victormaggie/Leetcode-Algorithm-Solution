@@ -8,6 +8,9 @@ class Solution:
             prefixmode = (prefixmode + A[i]) % K
             if prefixmode in hashmap:
                 count += hashmap[prefixmode]
+            # we can use the build-in hashmap attributes
+            # when cannot find return 0
+            # count += hashmap[prefixmode]
             hashmap[prefixmode] += 1
         return count
 

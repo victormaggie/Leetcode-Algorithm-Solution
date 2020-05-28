@@ -3,8 +3,8 @@ class TreeNode:
     def __init__(self, key, val):
         self.key = key
         self.val = val
-        self.next = next
-        self.prev = prev
+        self.next = None
+        self.prev = None
 
     def reset(self, key, val):
         self.key = key
@@ -22,6 +22,7 @@ class LRUCache:
             node = self.dict[key]
             self.move_to_head(node)
             return node.val
+        else: return -1
     
     def put(self, key: int, value: int) -> None:
         if key in self.dict:
@@ -30,12 +31,12 @@ class LRUCache:
             self.get(key)
         # if not in the the self.dict
         # we need increase the capacity of the hashmap
-        if len(self.dict) < self.capacity:
+        elif len(self.dict) < self.capacity:
             new_node = TreeNode(key, value)
+            # store to dictionary
             self.dict[key] = new_node
             # set as head
             new_node.next = self.head
-            new_node.prev = None
             self.head.prev = new_node
             self.head = new_node
         
