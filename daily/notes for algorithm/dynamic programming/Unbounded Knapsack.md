@@ -130,3 +130,84 @@ Unbounded kanpsack is a problem related to the question how many way or least st
 
             return dp[n-1][total_length] 
         ```
+
+* **Example III**: 
+  * Given an infinite supply of 'n' coins denominations and a total money amount, we are asked to find the total number of distinct ways to make up that amount.
+    * `Denomination: {1, 2, 3}`
+    * `amount: 5`
+    * `output: 5`
+
+  *  Brute force solution:
+        ```
+        def coin_change(self, amount, coins):
+            return coin_change_recursive(self, amount, coins, 0)
+
+        def coin_change_recursive(self, amount, coins, currentIndex):
+            # stop condition
+            n = len(coins)
+            # be aware that: here for count the value
+            if amount == 0: return 1
+            if n == 0 or amount <0  or currentIndex >= n:
+                return 0
+            
+            # case 1: using current coin
+            # we only need to count the number of coin here, we do not need to find the total sum
+            c1 = 0
+            if amount - coins[currentIndex] >= 0:
+                c1 = self.coin_change_recursive(amount - coins[currentIndex], coins, currentIndex)
+            # case 2: do not use current coin, and jump next
+            c2 = self.coin_change_recursive(amount, coins, currentIndex+1)
+
+            sum = c1 + c2
+        
+            return sum
+
+        ```
+
+  * Top down solution for the calculation
+
+    Be aware of that, we do not need to get the total value, we only need to get the count, thus no need add coins[i].
+    ```
+    def coin_change(self, amount, coins):
+        # define dp --> This is 2 dimension dp questions
+        dp = [[-1 for i in range(amount + 1)] for j in range(len(coins))]
+        return coin_change_recursive(self, dp, amount, coins, 0)
+    
+    def coin_change_recursive(self, dp, amount, coins, currentIndex):
+        if amount == 0: return 1
+        n = len(coins)
+        if n == 0 or amount < 0 or currentIndex >= n: return 0
+        if dp[currentIndex][amount] != -1: return dp[currentIndex][amount]
+
+        c1 = 0
+        if amount - coins[currentIndex] >= 0:
+            c1 = self.coin_change_recursive(dp, amount - coins[i], coins, current_Index)
+        c2 = self.coin_change_recursive(dp, amount, coins, currentIndex + 1)
+        dp[currentIndex][amount] = c1 + c2
+
+        return dp[currentIndex][amount]
+    ```
+  * Bottom up Dynamic programming
+    ```
+    def coin_change(self, amount, coins):
+        dp = [[0 for i in range(amount+1)] for j in range(len(coins))]
+        # be aware of that when amount = 0 , the number need be 1 --> like recursive solution above
+        for i in range(len(coins)):
+            dp[i][0] = 1
+        
+        for i in range(len(coins)):
+            for j in range(1, amount +1 ):
+                if i > 0:
+                    dp[i][j] = dp[i-1][j]
+                if t >= coins[i]:
+                    dp[i][j] = dp[i][j - coins[i]]
+        return dp[n-1][amount]
+
+    ```
+* **Example IV: Minimum coin change**
+  * Given an infinite supply of 'n' coin denominations and a total money amount, we are asked to find the minimum number of coins needed to make up that amount.
+    * `1, 2, 3`
+    * `amount: 5`
+    * `output: 2`
+
+# do it later
