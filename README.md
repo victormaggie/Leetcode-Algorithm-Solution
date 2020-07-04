@@ -1,5 +1,5 @@
 # Leetcode-Algorithm-Solution
-Better understand machine learning algorithm like Levenshtein Algorithm, Viterbi Algorithm etc; Solid my understand for Sort, Graph, Dynamic Programming, Search Algorithm. 
+Better understand machine learning algorithm like `Levenshtein Algorithm`, `Viterbi Algorithm`etc; Solid my understand for `Sort`, `Graph`, `Dynamic Programming`, `Search Algorithm`. 
 
 # Leetcode solution
   - Primarily used Python language to solve the Leetcode questions.
