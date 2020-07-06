@@ -14,4 +14,3 @@ class Solution:
 
 # The idea of greedy algorithm is to pick up the locally optimal move at each step
 # that will lead to the globally optimal solution
-
