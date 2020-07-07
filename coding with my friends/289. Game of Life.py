@@ -27,7 +27,7 @@ class Solution:
             new_y = dy[k] + i
             if new_x >= 0 and new_y >= 0 and new_x < n and new_y < m:
                 count += board[new_y][new_x]
-        
+	
         val = 0
 
         if board[i][j] == 1 and count == 2 or count == 3:
@@ -38,7 +38,7 @@ class Solution:
 
         return (i, j, val)
 
-## smart solution here!! 
+## smart solution here!!
 # time complexity o(m*n)
 # space complexity o(n)
 
@@ -68,6 +68,7 @@ class Solution:
 
                     # Check the validity of the neighboring cell and if it was originally a live cell.
                     # the abs is pretty smart !! lol
+		            # The abs() function is very smart
                     if (r < rows and r >= 0) and (c < cols and c >= 0) and abs(board[r][c]) == 1:
                         live_neighbors += 1
 
