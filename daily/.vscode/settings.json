@@ -44,6 +44,5 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp"
-    },
-    "python.pythonPath": "C:\\Users\\ruire\\AppData\\Local\\Continuum\\anaconda3\\envs\\pytorch\\python.exe"
+    }
 }
