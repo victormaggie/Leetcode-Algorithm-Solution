@@ -1,0 +1,3 @@
+var maxDepthAfterSplit = function(seq){
+    
+}
