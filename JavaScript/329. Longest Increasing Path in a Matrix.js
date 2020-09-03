@@ -1,33 +1,48 @@
-class Solution:
-    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        
-        # backtracking solution 
-        if not matrix or not matrix[0]: return 0
-        
-        m, n = len(matrix), len(matrix[0])
-        
-        ans = 0
-        for i in range(m):
-            for j in range(n):
-                
-                a = self.rec(matrix, m, n, i, j, 1)
-                print(a)
-                ans = max(ans, a)
-        
-        return ans
+/**
+ * @param {number[][]} matrix
+ * @return {number}
+ */
+var longestIncreasingPath = function(matrix) {
+    
+    if (matrix == null || matrix[0] == null) return 0;
+    
+    let row = matrix.length;
+    let col = matrix[0].length;
+    let ans = 0;
+    const dirs = [[-1, 0], [0, 1], [1, 0], [0, -1]];
+    
+    // define the Memorization here
+    let memo = [...Array(row)].map(() => Array(col).fill(null))
     
     
-    def rec(self, matrix, m, n, i, j, path):
+    const recur = (x, y) => {
+        if (memo[x][y] != null) return memo[x][y];
         
-        dx = (-1, 0, 1, 0)
-        dy = (0, -1, 0, 1)
-        
-        for k in range(4):
-            new_x = j + dx[k]
-            new_y = i + dy[k]
+        let max = 1;
+        for (const [dx, dy] of dirs) {
+            const j = y + dy;
+            const i = x + dx;
             
-            if 0 <= new_y < m and 0 <= new_x < n and matrix[new_y][new_x] > matrix[i][j]:
-                new_path = path + 1
-                self.rec(matrix, m, n, new_y, new_x, new_path)
-                
-        return path
+            if (i >= 0 && j >= 0 && i < row && j < col && matrix[i][j] > matrix[x][y]) {
+                const len = recur(i, j) + 1;
+                max = Math.max(max, len);
+            }
+        }
+        memo[x][y] = max;
+        return max;
+    }
+    
+    for (let i=0; i < row; i++) {
+        for (let j = 0; j < col; j++) {
+            
+            ans = Math.max(ans, recur(i, j));
+        }
+    }
+    
+    return ans;
+    
+};
+
+// time complexity (o(mn))
+// space complexity o(mn)
+
