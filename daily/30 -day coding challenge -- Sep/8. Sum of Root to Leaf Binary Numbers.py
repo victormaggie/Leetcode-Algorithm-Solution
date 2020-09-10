@@ -23,7 +23,6 @@ class Solution:
 
         return self.sum
 
-
 # time complexity o(n)
 # space complexity o(n)
 
