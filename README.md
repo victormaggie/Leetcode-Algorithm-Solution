@@ -1,5 +1,5 @@
 # Leetcode-Algorithm-Solution
-Solid my understanding for `Sort`, `Graph`, `Dynamic Programming`, `Search Algorithm`. 
+Strengthen my understanding for `Sort`, `Graph`, `Dynamic Programming`, `Search Algorithm`. 
 
 # Leetcode solution
   - Primarily used **Python** and **JavaScript** language to solve the Leetcode questions.
