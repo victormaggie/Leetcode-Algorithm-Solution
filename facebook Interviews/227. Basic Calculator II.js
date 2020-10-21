@@ -1,0 +1,5 @@
+var calculate = function(s) {
+
+    
+
+};
