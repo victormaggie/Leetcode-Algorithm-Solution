@@ -30,3 +30,32 @@ var intToRoman = function(num) {
 };
 
 // solution 1
+
+
+var intToRoman = function(x) {
+    const values = [
+        1000,
+        900, 500, 400, 100,
+        90, 50, 40, 10,
+        9, 5, 4, 1
+    ]
+
+    const strs = [
+        'M',
+        'CM', 'D', 'CD', 'C',
+        'XC', 'L', 'XL', 'X',
+        'IX', 'V', 'IV', 'I'
+    ]
+
+    let res = "";
+    for (let i = 0; i < 13; i++) {
+        while (x >= values[i]) {
+            res += str[i];
+            x -= values[i];
+        }
+    }
+    return res;
+};
+
+// the value here
+
