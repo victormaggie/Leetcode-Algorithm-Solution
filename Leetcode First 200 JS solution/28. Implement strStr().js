@@ -17,5 +17,10 @@ var strStr = function(haystack, needle) {
     return -1;
 };
 
-// o(n) solution
+// o(n*(n -l)) solution
 // o(1)
+
+
+//  should use KMP algorithm ..
+
+
