@@ -37,3 +37,24 @@ var generateParenthesis = function(n) {
     }
 }
 
+var generateParenthesis = function(n) {
+    
+    // first 1: left has
+    // second 2: right > -->
+    
+    let res = [];
+    let left = n, right = n
+    recursion(left, right, '');
+    return res;
+    
+    function recursion(left, right, temp){
+        if (left ==0 && right == 0){
+            res.push(temp);
+            return;
+        }
+        
+        if (left || left >= right) recursion(left-1, right, temp + '(');
+        if (right > left) recursion(left, right-1, temp+')')
+    }
+};
+
