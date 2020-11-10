@@ -12,3 +12,5 @@ var lowestCommonAncestor = function(root, p, q) {
     return recursion(root);
 }
 // o(n)
+
+
