@@ -23,4 +23,9 @@ const fruits_into_baskets = function(fruits) {
 
 // use the sliding window solution.
 // the same as the longest K distinct characters.
+
+---
+
+fixed sliding window!
+
 ```
