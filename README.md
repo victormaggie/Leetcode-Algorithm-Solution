@@ -7,5 +7,5 @@ Strengthen my understanding for `Sort`, `Graph`, `Dynamic Programming`, `Search 
 
 # Question solved (655 / 1633)
   - Python 520
-  - JavaScript 210
+  - JavaScript 220
   - SQL 100
