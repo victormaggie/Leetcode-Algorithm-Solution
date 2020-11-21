@@ -5,7 +5,7 @@ Strengthen my understanding for `Sort`, `Graph`, `Dynamic Programming`, `Search 
   - Primarily used **Python** and **JavaScript** languages to solve the Leetcode questions.
   - **C++ and Java** language were also used to solve some Leetcode questions.
 
-# Question solved (655 / 1633)
+# Question solved (654 / 1633)
   - Python 520
   - JavaScript 220
   - SQL 100
