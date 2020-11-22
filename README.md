@@ -6,6 +6,6 @@ Strengthen my understanding for `Sort`, `Graph`, `Dynamic Programming`, `Search 
   - **C++ and Java** language were also used to solve some Leetcode questions.
 
 # Question solved (654 / 1633)
-  - Python 520
+  - Python 521
   - JavaScript 220
   - SQL 100
