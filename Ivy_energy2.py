@@ -19,9 +19,14 @@ def bin_swap(input) :
     
     # bit = '1011'
     # [0,0,0,0,0,0]
-    for i in range(len(bit), -1, -1):
-        array[count] = bit[i]
+    # for i in range(len(bit)-1, -1, -1):
+        # array[count] = bit[i]
+        # count -= 1
+        
+    while abs(count) < len(bit):
+        array[count] = bit[count]
         count -= 1
+    
     
     # [0,0,1,0,1,1]
     # next step
