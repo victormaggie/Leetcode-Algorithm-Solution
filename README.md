@@ -8,4 +8,5 @@ Strengthen my understanding for `Sort`, `Graph`, `Dynamic Programming`, `Search 
 # Question solved (654 / 1633)
   - Python 521
   - JavaScript 220
+  - C++ 120
   - SQL 100
