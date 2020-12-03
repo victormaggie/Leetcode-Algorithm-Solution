@@ -44,3 +44,20 @@ var permutate = function(nums) {
     }
 }
 
+// no need to be backtracking here
+
+var permute = function(nums) {
+    let ans = [];
+
+    function dfs(nums, temp){
+        if (temp.length === nums.length) ans.push(path);
+        // iterate all the number
+        for (let i = 0; i < nums.length; i++) {
+            if (temp.includes(nums[i])) continue;
+            dfs(nums, [...temp, nums[i]]);
+        }
+    }
+    dfs(nums, []);
+    return ans;
+}
+// N!
