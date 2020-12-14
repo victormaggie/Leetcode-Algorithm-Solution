@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.65.3 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Rui Ren">
+<meta name="keywords" content="tech">
+<meta name="description" content="Manual trading and Market simulation
+
+
+
+
+Manual trading and Market simulation
+Overview 
+ &emsp; In this project, we first need figure out the indicators for decision making and stock trading. Before taking this project, I have no idea how to trade stock, just randomly `long` or `short` stocks, without any technical analysis, this project gave me great experience how to analyze the stock and how to make decision based on the stocks performance.">
+
+
+<meta property="og:description" content="Manual trading and Market simulation
+
+
+
+
+Manual trading and Market simulation
+Overview 
+ &emsp; In this project, we first need figure out the indicators for decision making and stock trading. Before taking this project, I have no idea how to trade stock, just randomly `long` or `short` stocks, without any technical analysis, this project gave me great experience how to analyze the stock and how to make decision based on the stocks performance.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reinforcement Learning for Finance">
+<meta name="twitter:title" content="Reinforcement Learning for Finance">
+<meta property="og:url" content="https://victormaggie.github.io/2020/08/reinforcement-learning-for-finance/">
+<meta property="twitter:url" content="https://victormaggie.github.io/2020/08/reinforcement-learning-for-finance/">
+<meta property="og:site_name" content="Rui Ren">
+<meta property="og:description" content="Manual trading and Market simulation
+
+
+
+
+Manual trading and Market simulation
+Overview 
+ &emsp; In this project, we first need figure out the indicators for decision making and stock trading. Before taking this project, I have no idea how to trade stock, just randomly `long` or `short` stocks, without any technical analysis, this project gave me great experience how to analyze the stock and how to make decision based on the stocks performance.">
+<meta name="twitter:description" content="Manual trading and Market simulation
+
+
+
+
+Manual trading and Market simulation
+Overview 
+ &emsp; In this project, we first need figure out the indicators for decision making and stock trading. Before taking this project, I have no idea how to trade stock, just randomly `long` or `short` stocks, without any technical analysis, this project gave me great experience how to analyze the stock and how to make decision based on the stocks performance.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2020-08-02T15:57:10">
+  
+  
+    <meta property="article:modified_time" content="2020-08-02T15:57:10">
+  
+  
+  
+    
+      <meta property="article:section" content="Machine Learning">
+    
+      <meta property="article:section" content="subcategory">
+    
+  
+  
+    
+      <meta property="article:tag" content="Machine Learning">
+    
+      <meta property="article:tag" content="Q-Learning">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/59c4ca3a1d0b598ad985c58e5ee7a7ba?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/59c4ca3a1d0b598ad985c58e5ee7a7ba?s=640">
+
+
+    <title>Reinforcement Learning for Finance</title>
+
+    <link rel="icon" href="https://victormaggie.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://victormaggie.github.io/2020/08/reinforcement-learning-for-finance/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://victormaggie.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://victormaggie.github.io/">Rui Ren</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://victormaggie.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/59c4ca3a1d0b598ad985c58e5ee7a7ba?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://victormaggie.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/59c4ca3a1d0b598ad985c58e5ee7a7ba?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Rui Ren</h4>
+        
+          <h5 class="sidebar-profile-bio">PhD in Petroleum Engineering, MS in Computer Science</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://victormaggie.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://victormaggie.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://victormaggie.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://victormaggie.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://victormaggie.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/victormaggie" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/rui-ren-5759579b/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://scholar.google.com/citations?user=uFrCAyYAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-google"></i>
+      
+      <span class="sidebar-button-desc">Google Scholar</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Reinforcement Learning for Finance
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-08-02T15:57:10-05:00">
+        
+  August 2, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://victormaggie.github.io/categories/machine-learning">Machine Learning</a>, 
+    
+      <a class="category-link" href="https://victormaggie.github.io/categories/subcategory">subcategory</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+<head>
+    <meta charset="utf-8">
+    <title>Manual trading and Market simulation</title>
+</head>
+<body>
+    <article>
+        <header>
+            <h2 align = "center"> Manual trading and Market simulation</h2>
+            <h3 align = "justed"> Overview </h3>
+            <p style = "text-align: justify;"> &emsp; In this project, we first need figure out the indicators for decision making and stock trading. Before taking this project, 
+                I have no idea how to trade stock, just randomly <b>long</b> or <b>short</b> stocks, without any technical analysis, 
+                this project gave me great experience how to analyze the stock and how to make decision based on the stocks performance. </p>
+                &emsp; 
+            <p style = "text-align: justify; margin: 0; line-height: 2;"> &emsp; The second part of the project, we use the Intuitive criterion, like sharp ration > 0, simple moving average ration > 0 or MACD < 0, 
+                to make the <b>SHORT</b> or <b>LONG</b> decision. In this experiment, we tune the criterion to obtain <B>MAXIMUM</B> returns. 
+                This part is very time consuming, but helpful for us to understand the influence of each indicator 
+                on the final returns. As a warm-up for machine learning, Q-learning method, 
+                this part is a foundation and increase my interest to use Machine Learning technique to build agent to autonomously trade stocks.
+            </p>
+            <h3 align = 'left'>Part I Technical Indicators</h3>
+            <p style="text-align: justify;">
+                &emsp; For this part, I will describe the indicators for the project. In trial and error procedures, I tried <b>Kalman Filter</b>, <b>sharp ratio</b>, 
+                <b>Moving Average Convergence Divergence</b>(MACD), <b>e project. In trial and error procedures, I tried <b>Kalman Filter</b>, <b>sharp ratio</b>, 
+                <b>Moving Average Convergence Divergence</b>(MACD), <b></b>Bollinger Band</b>, <b>simple moving average ratio</b>, <b>Bollinger Band percent</b>, and Fourier Transformation. 
+                the performance of Kalman filter can only tracking the increase of stocks, the stochastic influence of circumstance cannot be well predicted, 
+                the Bollinger Band Percent is a new concept that was proposed in 1990, but the performance of Bollinger Band Percent is still not satisfying for my case study. 
+                As a result, I end up with MACD, simple moving average ratio and Bollinger ratio to be the indicators. 
+            </p>
+            <h4>1.	Simple Moving Average</h4>
+                <p style="text-align: justify">
+                    &emsp; The Simple Moving Average (SMA) is a technical indicator for determining if an asset price will continue or reverse a bull or bear tread 
+                    <a href="https://www.investopedia.com/terms/s/sma.asp"><sup>1</sup></a>. SMA is calculated as the arithmetic average of an asset price, 
+                    while Exponential Moving Average (EMA) that weight more on the recent price. The calculation of SMA is shown as following,
+                    <p align = "center">
+                        <a href="https://www.codecogs.com/eqnedit.php?latex=SMA&space;=&space;\frac{A_1&space;&plus;&space;A_2&space;&plus;&space;A_3&space;&plus;&space;A_4&space;...&space;&plus;&space;A_n}{n}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?SMA&space;=&space;\frac{A_1&space;&plus;&space;A_2&space;&plus;&space;A_3&space;&plus;&space;A_4&space;...&space;&plus;&space;A_n}{n}" title="SMA = \frac{A_1 + A_2 + A_3 + A_4 ... + A_n}{n}" /></a>
+                    </p>
+                </p>
+        </header>
+    </article>
+</body>
+
+    <p style="text-align: justify;">where, n is the window represents how far we look back the data, $A_n$ is the data in our window.</p>
+<p align = "center">
+  <a href="https://www.codecogs.com/eqnedit.php?latex=SMR_{ration}&space;=&space;\frac{p_x}{SMA(t)}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?SMR_{ration}&space;=&space;\frac{p_x}{SMA(t)}" title="SMR_{ration} = \frac{p_x}{SMA(t)}" /></a>
+</p >
+<p style="text-align: justify;">&emsp; In indicator pool, SMA_Ratio is a indicator for BUY or SELL signal. The naïve SMA_Ratio algorithm can only based on SMR<sub>ratio</sub> </p>
+
+<p align = "center">  <font size = "1">This shows how SMA ratio works, but for the real indicators, we combine SMA, Bollinger band and MACD together </font> </p>
+
+  &emsp;The calculation of moving average ratio is relative handy in pandas dataframe, we use the rolling window moving average to calculate, the calculation result is as following, 
+<p align = "center">
+    <img src='https://victormaggie.github.io/img/1.png'> </br>
+    <b> 
+        Fig. 1 SMA and SMA ratio figure for the data from (2008,1,1) to (2009, 12,31) 
+    </b>
+    <br>
+    <font size="2"> *The windows size n = 14 day in this figure. </font>
+    </br>
+</p>
+
+<p style= "text-align: justify" >&emsp; As we can see in Fig 1., if we use Algorithm 1, the <b>BUY</b> and <b>SELL</b> signal is obvious. I analyze the correlation of SMA_Ratio and JP Morgan stocks price, their correlation is negative, that means the peak of SMA_Ratio can give us the lower stock value and we can <B>BUY</B> stock, as in the arrow region of the figure.
+
+<h4>2. Bollinger bands</h4>
+
+<p style= "text-align: justify"> &emsp; Bollinger Bands are the technical analysis tool developed by John Bollinger, which contains SMA, upper band and lower band, the calculation for upper band and lower band can be shown as following equations,</p>
+<p align="center">
+  <a href="https://www.codecogs.com/eqnedit.php?latex=BB_{top}&space;=&space;SMA&space;&plus;&space;(2&space;*&space;std_{sma})" target="_blank"><img src="https://latex.codecogs.com/svg.latex?BB_{top}&space;=&space;SMA&space;&plus;&space;(2&space;*&space;std_{sma})" title="BB_{top} = SMA + (2 * std_{sma})" /></a></br>
+  <a href="https://www.codecogs.com/eqnedit.php?latex=BB_{bottom}&space;=&space;SMA&space;-&space;(2&space;*&space;std_{sma})" target="_blank"><img src="https://latex.codecogs.com/svg.latex?BB_{bottom}&space;=&space;SMA&space;-&space;(2&space;*&space;std_{sma})" title="BB_{bottom} = SMA - (2 * std_{sma})" /></a></br>
+  <a href="https://www.codecogs.com/eqnedit.php?latex=BB_{ratio}&space;=&space;\frac{p(x)-SMA(t)}{2&space;*&space;std(t)}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?BB_{ratio}&space;=&space;\frac{p(x)-SMA(t)}{2&space;*&space;std(t)}" title="BB_{ratio} = \frac{p(x)-SMA(t)}{2 * std(t)}" /></a>
+</p>
+<p align = "center">
+    <img src='https://victormaggie.github.io/img/2.png'>
+    <b> 
+        Fig.2 Bollinger band ratio calculation 
+    </b>
+</p>
+
+<p style= "text-align: justify"> &emsp; For this experiment, we also use the window 14 days to calculate the Bollinger bands, as shown in Fig. 2. This calculation was offered by project description <a href="https://www.wikipedia.org/"><sup>4</sup></a>, it give us vey good indication of BUY and SELL signal, the divergence can give use the buy and sell signal. <br>
+
+&emsp; For comparison, Bollinger band percent was also be used in the experiment, but its indication was not useful, as shown in Fig. 3, this indicator cannot give us good signal for my experiment study. As a result, I used Bollinger band ratio offered by project description.</p>
+
+<p align = "center">
+    <img src='https://victormaggie.github.io/img/3.png'>
+    <b>
+        Fig.3 Bollinger band percent calculation
+    </b>
+</p>
+
+<h4>3. Moving Average Convergence Divergence</h4>
+
+&emsp; Based on exponentially weighted moving average, the calculation formula is shown as,
+<p align="center">
+<a href="https://www.codecogs.com/eqnedit.php?latex=ewa&space;=&space;\sum_{i=1}^{n}\frac{2}{N&plus;1}(1-&space;\frac{2}{N&plus;1})^{i}x_{i-1}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?ewa&space;=&space;\sum_{i=1}^{n}\frac{2}{N&plus;1}(1-&space;\frac{2}{N&plus;1})^{i}x_{i-1}" title="ewa = \sum_{i=1}^{n}\frac{2}{N+1}(1- \frac{2}{N+1})^{i}x_{i-1}" /></a>
+</p>
+<p style= "text-align: justify;">
+ &emsp;  There has three lines in MACD model, the first one is 12 day exponentially weighted moving average, 26 day exponentially weighted moving average, the difference is MACD line,
+</p>
+
+ <p align="center">
+    <a href="https://www.codecogs.com/eqnedit.php?latex=MACD_{line}&space;=&space;ewa(p_t,&space;window&space;=&space;12)&space;-&space;ewa(p_t,&space;window=26)" target="_blank"><img src="https://latex.codecogs.com/svg.latex?MACD_{line}&space;=&space;ewa(p_t,&space;window&space;=&space;12)&space;-&space;ewa(p_t,&space;window=26)" title="MACD_{line} = ewa(p_t, window = 12) - ewa(p_t, window=26)" /></a></br>
+    <a href="https://www.codecogs.com/eqnedit.php?latex=MACD_{signal}&space;=&space;ewa(MACD_{line},&space;window=9)" target="_blank"><img src="https://latex.codecogs.com/svg.latex?MACD_{signal}&space;=&space;ewa(MACD_{line},&space;window=9)" title="MACD_{signal} = ewa(MACD_{line}, window=9)" /></a>
+</p>
+<p style = "text-align: justify">
+   &emsp;  As a result, the divergence of MACD, which is the difference of MACD<sub>line</sub> and MACD<sub>signal</sub>, can be used as the indication for BUY and SELL signal.
+</p>
+   <p align="center">
+   <a href="https://www.codecogs.com/eqnedit.php?latex=MACD_{divergence}&space;=&space;MACD_{line}&space;-&space;MACD_{signal}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?MACD_{divergence}&space;=&space;MACD_{line}&space;-&space;MACD_{signal}" title="MACD_{divergence} = MACD_{line} - MACD_{signal}" /></a>
+  </p>
+ <p align = "center">
+    <img src='https://victormaggie.github.io/img/4.png'> 
+    <b> 
+        Fig.4 MACD calculation results
+    </b>
+</p>
+
+<h3>Part II Theoretically Optimal Strategy</h3>
+<p style = "text-align: justify">
+&emsp; In this part, we introduce the naïve stock trading policy, we assume that we can see the future. As such, we use the JP Morgan data as the future stock data. If we daily return is larger than 0, then the action is LONG, if daily return is less than 0, then we SHORT the stock. In the experiment, the technical indicator is that, 
+</p>
+<p align="center">
+<a href="https://www.codecogs.com/eqnedit.php?latex=P(t)&space;-&space;p(t&space;&plus;&space;1)&space;>&space;0&space;\rightarrow&space;SHORT" target="_blank"><img src="https://latex.codecogs.com/svg.latex?P(t)&space;-&space;p(t&space;&plus;&space;1)&space;>&space;0&space;\rightarrow&space;SHORT" title="P(t) - p(t + 1) > 0 \rightarrow SHORT" /></a></br>
+<a href="https://www.codecogs.com/eqnedit.php?latex=P(t)&space;-&space;p(t&space;&plus;&space;1)&space;<0&space;\rightarrow&space;LONG" target="_blank"><img src="https://latex.codecogs.com/svg.latex?P(t)&space;-&space;p(t&space;&plus;&space;1)&space;<0&space;\rightarrow&space;LONG" title="P(t) - p(t + 1) <0 \rightarrow LONG" /></a>
+</p>
+
+&emsp; For easy understanding, 
+<p align="center"><a href="https://www.codecogs.com/eqnedit.php?latex=p(t)-p(t&plus;1)>0" target="_blank"><img src="https://latex.codecogs.com/svg.latex?p(t)-p(t&plus;1)>0" title="p(t)-p(t+1)>0" /></a> </p>
+that means the stock price will decrease. p(t)-p(t+1)<0 that means the stock price will increase. 
+<p align = "center">
+    <img src='https://victormaggie.github.io/img/5.png' width = "450"> 
+    <b> 
+        Fig.5 JP Morgan data from 2008-2009 calculation results
+    </b>
+    <br>
+    <font size = "2" > * The calculation result is standard deviation is small, because the moving window is 14 days. 
+&emsp;The cumulative return from the normalized value is 5.78 $.  </font>
+    </br>
+</p>
+
+
+<p align = "center"><b> Table 1. Statistic calculation table</b> </p>
+<table> 
+    <thead>
+        <tr>
+            <th align = "center"> Statistics Items</th>
+            <th align = "center"> Theoretically Optimal</th>
+            <th align = "center"> Brenchmark </th>
+        </tr>
+    </thead>
+<tbody>
+    <tr>
+        <td align="center">Cumulative return</td>
+        <td align="center">5.786</td>
+        <td align="right"> 0.01229</td>
+    </tr>
+    <tr>
+        <td align="center">Standard deviation of daily return</td>
+        <td align="center">0.004547</td>
+        <td align="right"> 0.01700</td>
+    </tr>
+    <tr>
+        <td align="center">Mean of daily return</td>
+        <td align="center">0.003816</td>
+        <td align="right"> 0.000168</td>
+    </tr>
+</tbody>
+</table>
+<p></p>
+
+
+<h3>Part III Manual Strategy</h3>
+<p style="text-align: justify">
+&emsp; For the part, we ensemble the indicators from the Part II, because the theoretically optimal method cannot be feasible for the real stock trading, then we define a Manual strategy trading for the calculation, as following:</p>
+<br>
+<li>
+    If MACD<sub>divergence</sub> from Negative to Positive or Bollinger<sub>ration</sub> <- 0.91 or  SMA<sub>ratio</sub> < 0.99:
+    <li style = "list-style-type: circle; padding-left: 19px;"> This is <b>BUY</b> signal</li>
+</li> 
+
+<li>
+    If MACD<sub>divergence</sub> from Positive to Negative or Bollinger<sub>ratio</sub> > 0.91 and  SMA<sub>ratio</sub> > 1.01:
+    <li style = "list-style-type: circle; padding-left: 19px">This is <b>SELL</b> signal</li>
+</li>
+<li>
+    Otherwise, do nothing
+</li>
+
+
+<p align = "center"><b> Table 2. Statistic calculation table</b> </p>
+<table> 
+    <thead>
+        <tr>
+            <th align = "center"> Statistics Items</th>
+            <th align = "center"> Theoretically Optimal</th>
+            <th align = "center"> Brenchmark </th>
+        </tr>
+    </thead>
+<tbody>
+    <tr>
+        <td align="center">Cumulative return</td>
+        <td align="center">0.6615</td>
+        <td align="right"> 0.0123</td>
+    </tr>
+    <tr>
+        <td align="center">Standard deviation of daily return</td>
+        <td align="center">0.000783</td>
+        <td align="right"> 0.0012</td>
+    </tr>
+    <tr>
+        <td align="center">Mean of daily return</td>
+        <td align="center">0.00078</td>
+        <td align="right"> 0.0012</td>
+    </tr>
+</tbody>
+</table>
+
+
+&emsp; The calculation plot is shown as following, 
+<p align = "center">
+    <img src='https://victormaggie.github.io/img/6.png'>
+    <b> 
+        Fig.6 JP Morgan data from 2008-2009 calculation results
+    </b>
+</p>
+
+<h3>Part IV Comparative Analysis</h3>
+<p style = "text-align: justify;">
+&emsp; In this part we analysis the Manual strategy for the out sample data. We use JP Morgan data, the in sample data is from 2008-1-1 to 2009-12-31, and the out sample data is from 2010-1-1 to 2011-12-31.</br>
+&emsp; As we discussed before, when we use the in sample data has cumulative return 0.662, but for out sample data, we have 0.1655. we can see that the out sample data is not as good as in sample data for the calculation. This means the parameter of Bollinger band and SMA ratio criterionS for the in sample data works worse, but it is still useful for trading as we still earn money from this strategy. This has some sort of Machine Learning flavor, tunning the parameter and fit the data, but may not work well for out sample data.
+</p>
+<p align = "center">
+    <img src='https://victormaggie.github.io/img/7.png'>
+    <b> 
+        Fig.7 JP Morgan data from 2010-2011 calculation results (out sample data)
+    </b>
+</p>
+
+<h3>Part V Reinforcement Learning</h3>
+
+<h4>1. Q-learning algorithm</h4>
+<p style = "text-align: justify;">
+
+&emsp; Model-free reinforcement learning algorithm , Q-learning, is used as the learning trader. It use the transition tuples $<s, a, r, s’>$, the goal of Q-learning is to learn a policy, which tells an agent what action to take under what circumstance. It does not require a model of environment, and it can handle problems with stochastic transitions and rewards, without requiring adaptations. The update equation is as followings,
+</p>
+<p align="center">
+<a href="https://www.codecogs.com/eqnedit.php?latex=Q^{new}&space;(s_t,a_t&space;)\leftarrow&space;(1-a)*Q(s_t,a_t)&plus;a*(r_t&plus;\gamma&space;*max_{a}Q(s_{t&plus;1},a))" target="_blank"><img src="https://latex.codecogs.com/svg.latex?Q^{new}&space;(s_t,a_t&space;)\leftarrow&space;(1-a)*Q(s_t,a_t)&plus;a*(r_t&plus;\gamma&space;*max_{a}Q(s_{t&plus;1},a))" title="Q^{new} (s_t,a_t )\leftarrow (1-a)*Q(s_t,a_t)+a*(r_t+\gamma *max_{a}Q(s_{t+1},a))" /></a></br>
+<a href="https://www.codecogs.com/eqnedit.php?latex=\prod{}{^*}(s)&space;=&space;argmax_aQ^{new}(s,&space;a)" target="_blank"><img src="https://latex.codecogs.com/svg.latex?\prod{}{^*}(s)&space;=&space;argmax_aQ^{new}(s,&space;a)" title="\prod{}{^*}(s) = argmax_aQ^{new}(s, a)" /></a>
+</p>
+
+<p style="text-align: justify;">
+&emsp; Where r<sub>t</sub> is the reward, a is the learning rate, &lambda; is the discount factor.
+
+- States:  For each three indicators, I use 10 bins to do data binning, number of state 10<sup>3</sup>
+- Actions: The action for this calculation is that LONG, SHORT, Do Nothing. For the reinforcement learning algorithm, we use 0, 1, 2 to express action representatively.
+- Rewards: As discuss, the daily return can facilitate the calculation and let the agent interact with the environment rapidly. For standardization, we use the equation of
+</p>
+<p align="center">
+<a href="https://www.codecogs.com/eqnedit.php?latex=X_{scale}&space;=&space;\frac{X&space;-&space;u}{\sigma}" target="_blank"><img src="https://latex.codecogs.com/svg.latex?X_{scale}&space;=&space;\frac{X&space;-&space;u}{\sigma}" title="X_{scale} = \frac{X - u}{\sigma}" /></a>
+
+</p>
+&emsp;The standardization can elimente the bias result from the different data scale for the machine learning model.
+
+<h3>2. Experiment analysis</h3>
+
+<h4>&emsp;Experiment analysis I</h4>
+<p style = "text-align: justify;">
+    &emsp;In the first experiment, performance of Q-learning strategy was analysis and compare it with bench and manual strategy. The data was JP Morgan data range from Jan 1 2008 to December 31 2009. The benchmark is to start with 100,000$ cash and buy 1000 shares on the first day and short 1000 on the last day. The impact parameter is chosen as 0.005 for manual strategy and strategy learner. The result is shown as Fig. 5. 
+</p>
+    <p align = "center">
+    <img src='https://victormaggie.github.io/img/8.png'>
+    <b> 
+        Fig.8 Comparison of different method for in sample data
+    </b>
+</p>
+<p style="text-align: justify;">
+&emsp;As shown in Fig.8, the strategy learning works extremely good, the final normalized value is over 3.5. and the manual strategy can beat the benchmark at the end. However in the early stage, the manual strategy cannot beat the benchmark.
+&emsp;Would you expect this relative result every time with in-sample data? Yes, for the development of Q-learning algorithm, we use the convergence check method, if the order table is constant, as such, the same training dataset will result in the relative results.
+</p>
+<h4>&emsp;Experiment analysis II</h4>
+<p style="text-align: justify;">
+&emsp&emsp;The metrics used for analysis the influence of impact to strategy learning is cumulative return and number of trades with different impact values. As we can see in Fig 6, 
+with small impact value, the Q learning will get smaller influence on the performance, and the manual strategy linearly decrease with the increasing of impact.</br>
+&emsp; In Fig. 9, the change of impact has no effort on manual strategy, as well as Q-learning algorithm. Even the is a small fluctuation around 200, but the number of order still remain in a same number nearly 200.  As such, we can conclude that the impact will not or slight influence Number of orders.
+</p>
+<p align = "center">
+    <img src='https://victormaggie.github.io/img/9.png' width="325"> 
+    <img src='https://victormaggie.github.io/img/10.png' width="325"/>
+    <b> 
+        Fig.9 Comparison of different method for in sample data
+    </b>
+</br>
+</p>
+
+<h3>Part VI Reference</h3>
+<ol>
+    <li>emsp;https://www.investopedia.com/terms/s/sma.asp </li>
+    <li>https//www.tradingview.com/</li>
+    <li>https://www.wikipedia.org/</li>
+</ol>
+
+<Thank you >
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://victormaggie.github.io/tags/machine-learning/">Machine Learning</a>
+
+  <a class="tag tag--primary tag--small" href="https://victormaggie.github.io/tags/q-learning/">Q-Learning</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://victormaggie.github.io/2020/08/random-forest/" data-tooltip="Random Forest">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://victormaggie.github.io/2020/03/hello-world/" data-tooltip="Hello World">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://victormaggie.github.io/2020/08/reinforcement-learning-for-finance/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://victormaggie.github.io/2020/08/reinforcement-learning-for-finance/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://victormaggie.github.io/2020/08/reinforcement-learning-for-finance/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 Rui Ren. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://victormaggie.github.io/2020/08/random-forest/" data-tooltip="Random Forest">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://victormaggie.github.io/2020/03/hello-world/" data-tooltip="Hello World">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://victormaggie.github.io/2020/08/reinforcement-learning-for-finance/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://victormaggie.github.io/2020/08/reinforcement-learning-for-finance/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://victormaggie.github.io/2020/08/reinforcement-learning-for-finance/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvictormaggie.github.io%2F2020%2F08%2Freinforcement-learning-for-finance%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fvictormaggie.github.io%2F2020%2F08%2Freinforcement-learning-for-finance%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fvictormaggie.github.io%2F2020%2F08%2Freinforcement-learning-for-finance%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/59c4ca3a1d0b598ad985c58e5ee7a7ba?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Rui Ren</h4>
+    
+      <div id="about-card-bio">PhD in Petroleum Engineering, MS in Computer Science</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Data Scientist
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        United States
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://victormaggie.github.io/images/new.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://victormaggie.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/victormaggie.github.io\/2020\/08\/reinforcement-learning-for-finance\/';
+          
+            this.page.identifier = '\/2020\/08\/reinforcement-learning-for-finance\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'Rui Ren';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
