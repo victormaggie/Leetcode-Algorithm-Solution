@@ -1,64 +1,73 @@
 
-// Dijkstra algorithm
+#include<algorithm>
+#include<iostream>
 
-#include <iostream>
-#include <cstring>
-#include <algorithm>
 
-using namespace std;
-
-const int N = 510;
+// the size of the node
+const N = 510;
 int n, m;
-int g[N][N];  // dense graph use the adjacent matrix 
-int dist[N];  // memo the distance to the starting point
-bool st[N];   // get the optimal distance or not
+// use the graph dense -> adjacent matrix
+int g[N][N];
+// The node is check or not
+bool st[N];
+// Check the answer of the system
+int dist[N];
 
-int dijkstra() {
+
+int Dijkstra() {
 	
-	// Initialization distance to the starting point as INF
 	memset(dist, 0x3f, sizeof dist);
 	
-	// the starting point to itself as 0
+	// initialize the starting node
 	dist[1] = 0;
 	
-	// Iterate N times, find a shortest distance each time.
-	for (int i = 0; i < n; ++i) {
+	// iterate all the node to find the next starting point
+	for (int i = 1; i <= n; i++) {
+		
+		// check index
 		int t = -1;
-		for (int j = 1; j <= n; ++j) {
-			// not in st , not update, or found another short distance
-		if (!st[j] && (t == -1 || dist[j] < dist[t])) {
-			t = j;
-			}
+		for (int j = 1; j <= n; j++) {
+			// node must not be selected
+			if (!st[j] && ( t == -1 || dist[j] < dist[t]))
+				// the next round we might select t node
+				// greedy , each time we choose the smallest one
+				// the assumption is  that the router cost will be positive_sign
+				// we might not traveral all the node
+				t = j;			
 		}
-		// add to the st list
+		
+		// select the j node here!
 		st[t] = true;
 		
-		// find the smallest distance, and update the distance to t
-		for (int j = 1; j <= n; ++j) {
-			dist[j] = min(dist[j], dist[t] + g[t][j]);
+		// here we need perform relaxation
+		for (int i = 1; i <= n; i++) {
+			// relaxation condition  --> Update the next adjacent list 
+			// even though some node are not connect to the current selected node
+			// but g[t][i] will be infinite, as such no hurts.!
+			dist[i] = min(dist[i], dist[t] + g[t][i]);
 		}
 	}
-	
-	// if cannot reach n node, return -1
-	if (dist[n] == 0x3f3f3f3f) return -1;
-	
+	if (dist[n] == 0x3f) return -1;
 	return dist[n];
+	
 }
-
 
 int main() {
 	
 	cin >> n >> m;
 	
-	memset(g, 0xf, sizeof g);
+	memset(g, 0x3f, sizeof g);
+	
 	
 	while (m--) {
 		int a, b, c;
 		scanf("%d%d%d", &a, &b, &c);
 		g[a][b] = min(g[a][b], c);
-	};
+	}
 	
-	cout << dijkstra() << endl;
-	return 0;
-	
+	int t = dijkstra();
+	printf("%d\n", t);
 }
+
+
+
