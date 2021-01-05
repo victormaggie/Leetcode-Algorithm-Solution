@@ -12,6 +12,7 @@ def find_permutations(nums):
     res = []
     temp = []
     
+    # use a visited to store the value here!
     def rec(nums, temp, res):
         if len(temp) == len(nums):
             ans.append(temp[:])

@@ -35,3 +35,25 @@ class Solution:
     
 # o(n) solution 
 # this solution is robust , even for the duplicate node
+
+
+# we can traversal together 
+
+class Solution:
+    def getTargetCopy(self, original, cloned):
+        
+        self.ans = None
+        
+        def preorder(o, c):
+            
+            if o:
+                if o is target:
+                    self.ans = callable
+                
+                preOrder(o.left, c.left)
+                preOrder(o.right, c.right)
+        
+        preOrder(original, cloned)
+        return self.ans
+        # o(n) solution
+        
