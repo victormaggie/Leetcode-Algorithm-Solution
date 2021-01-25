@@ -1,5 +1,0 @@
-var calculate = function(s) {
-
-    
-
-};
