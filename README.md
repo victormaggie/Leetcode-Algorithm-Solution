@@ -27,8 +27,7 @@ Strengthen my understanding for `Sort`, `Graph`, `Dynamic Programming`, `Search 
 
 | Questions | Link                                                         | Solution                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1  | 1 |      
-                                                            |
+| 1  | 1 |    
 
 ## Chapter 3 Sliding Window and two pointer
 
@@ -42,7 +41,7 @@ Strengthen my understanding for `Sort`, `Graph`, `Dynamic Programming`, `Search 
 
 | Questions | Link                                                         | Solution                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1  | 1 |                                                               |        |
+| 1  | 1 |  |                                                               |        |
 
 ## Chapter 4 Linked-list
 
