@@ -76,14 +76,12 @@ Strengthen my understanding for `Sort`, `Graph`, `Dynamic Programming`, `Search 
 | Questions | Link                                                         | Solution                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1  | 1 |      
-                                                    |
 
 ## Chapter 9 Backtracking
 
 | Questions | Link                                                         | Solution                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1  | 1 |      
-                                                    |
 
 ## Chapter 10 Dynamic Programming
 
