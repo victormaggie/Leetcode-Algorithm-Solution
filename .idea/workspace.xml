@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f28b135c-e3bc-46a9-b811-bb9bbe2f0af3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="f28b135c-e3bc-46a9-b811-bb9bbe2f0af3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +14,7 @@
   <component name="ProjectId" id="1nXRH4JWoDPD7YV1HBFA1y0P1pR" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../NeuroRehab" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -45,6 +41,7 @@
       <workItem from="1611534362262" duration="1495000" />
       <workItem from="1611536214793" duration="233000" />
       <workItem from="1611538696973" duration="66000" />
+      <workItem from="1611767650831" duration="16000" />
     </task>
     <servers />
   </component>
